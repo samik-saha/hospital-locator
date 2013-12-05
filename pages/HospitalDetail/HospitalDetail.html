@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HospitalDetail</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/pages/HospitalDetail/HospitalDetail.css" rel="stylesheet" />
+    <script src="/pages/HospitalDetail/HospitalDetail.js"></script>
+</head>
+<body>
+    <div class="itemdetailpage fragment">
+        <header aria-label="Header content" role="banner">
+            <button id="backButton" data-win-control="WinJS.UI.BackButton" style="visibility:hidden"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span id="pageTitle" class="pagetitle"></span>
+            </h1>
+        </header>
+        <progress id="hdProgress" class="win-large"></progress>
+        <div class="hd-content" aria-label="Main content" role="main">
+            <div id="hdPage">
+                <div id="imageFlipView"
+                     data-win-control="WinJS.UI.FlipView"
+                     data-win-options="{orientation: 'vertical'}">
+                </div>
+
+                <section class="hd-details">
+                    <div class="hd-details">
+                        <h2>Details</h2>
+                        <br />
+                        <label for="phNo">Ph: </label><span id="phNo" class="details-item">(Not available)</span>
+                        <br />
+                        <label for="website">Website: </label><a id="website" href="#" class="details-item">(Not available)</a>
+                        <br />
+                        <label for="address">Address: </label><span id="address" class="details-item"></span>
+                        <br />
+                        <label for="ratingControlDiv">Rating: </label>
+                        <div id="ratingControlDiv" data-win-control="WinJS.UI.Rating" data-win-options="{disabled :true}"></div>
+
+                    </div>
+                </section>
+
+                <section class="hd-location">
+                    <div class="hd-location">
+                        <h2>Map & Directions</h2>
+                        <br /><iframe onerror ="console.log('error occurred');" id="map1" src="ms-appx-web:///pages/HospitalDetail/map.html"></iframe>
+                    </div>
+                </section>
+
+                <section class="hd-reviews">
+
+                    <div id="reviewsSection" class="hd-reviews">
+                        <h2>Reviews</h2>
+                        <br />
+                        <div id="reviewItems" class="hd-review-items">No reviews available</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

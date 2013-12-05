@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>page1</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+    
+    <link href="UserLocation.css" rel="stylesheet" />
+    <script src="UserLocation.js"></script>
+
+    
+</head>
+<body>
+    <div class="locationPage fragment">
+        <header aria-label="Header content" role="banner">
+            <button data-win-control="WinJS.UI.BackButton"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Your Location</span>
+            </h1>
+        </header>
+        <div class="content">
+            <section id="mainSection" class="details">
+                <br>
+
+                <div id="btnGroup1">
+                    <br>
+                    <h2 id="status">Detecting your location. Please wait.</h2>
+                    <br>
+                    <input id="detectLocationButton" type="button" value="Detect Location" />
+                    <input id="showSearchButton" type="button" value="Enter Location" />
+                </div>
+                <div id="searchBox" hidden="hidden">
+
+                    <input id="searchInput" type="search"  /><!--onkeyup="javascript: var key = event.keyCode || event.which; if (key == 13) {performSearch();}"-->
+                    <input id="searchButton" type="button" value="Search" />
+                    <input id="cancelSearchButton" type="button" value="Cancel" />
+                    <br /><br />
+                    <h2 id="searchResult"></h2>
+                </div>
+                <br>
+                <br>
+            </section>
+            <section class="map">
+                <iframe id="usrLocMap" src="ms-appx-web:///pages/UserLocation/map.html"></iframe>
+            </section>
+            <section class="footer-btn">
+                <input id="continueButton" type="button" onclick="WinJS.Navigation.navigate('/pages/home/home.html')" value="Continue" />
+            </section>
+        </div>
+    </div>
+</body>
+</html>

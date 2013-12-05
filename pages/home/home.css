@@ -1,0 +1,155 @@
+﻿.fragment {
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 128px 1fr;
+    display: -ms-grid;
+    height: 100%;
+    width: 100%;
+}  
+
+  .fragment header[role=banner] {
+        /* Define a grid with columns for the back button and page title. */
+        -ms-grid-columns: 37px 83px 1fr;
+        -ms-grid-rows: 1fr;
+        display: -ms-grid;
+    }
+
+
+.homepage section[role=main] {
+    -ms-grid-column-span: 2;
+    -ms-grid-row-span: 2;
+    width: 100%;
+    display: -ms-grid;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 40px 30px 1fr;
+    
+}
+
+h1.titlearea {
+    width: calc(100% - 320px);
+}
+
+#searchBoxId {
+    position: fixed;
+    top: 70px;
+    right: 40px;
+}
+
+#subheader {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    margin-left: 124px;
+    white-space:nowrap;
+    width: calc(100% - 124px);
+}
+.toolbar {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    margin-top: 0px;
+    margin-left: 124px;
+}
+
+.toolbar .item {
+    margin-left: 20px;
+}
+
+#searchStatus {
+    margin-top: 60px;
+    margin-left: 124px;
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
+}
+
+#listView {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    margin-top: 20px;
+    height: calc(100% - 20px);
+    width: 100%;
+}
+
+    #listView .win-surface {
+        margin-left: 120px;
+    }
+
+.text {
+    font-size: 16pt;
+}
+
+label.text {
+    font-weight: normal;
+}
+
+
+/* ListView Items */
+.item-container {
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+    padding: 5px 5px 5px 5px;
+}
+
+    .item-container .image-container {
+        width: 250px;
+        height: 150px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+        .item-container .image-container .item-image {
+            width: 250px;
+            height: auto;
+            min-height: 150px;
+        }
+
+    .item-container .item-text-container {
+        position: static;
+    }
+
+        .item-container .item-text-container .item-title {
+            font-size: 14pt;
+            display: block;
+        }
+        .item-container .item-text-container .item-text {
+            font-size: 11pt;
+            display: block;
+            color: gray;
+        }
+
+#progressRing {
+    color: orange; /* Uses the same text color as the page */
+    vertical-align: middle; /* Makes the bottom of the control align with the bottom of its label */
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+}
+
+
+.googlelogo {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+}
+
+
+@media screen and (orientation: portrait) {
+    #searchBoxId {
+        visibility:hidden;
+    }
+
+    #chgLocBtn {
+        visibility: hidden;
+    }
+
+    h1.titlearea {
+    width: 100%;
+}
+    /*
+    .toolbar {
+        margin-left: 20px;
+    }
+
+    #listView .win-surface {
+        margin-left: 20px;
+    }
+        */
+}

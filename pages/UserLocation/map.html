@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Map</title>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map-canvas {
+            height: 100%;
+        }
+    </style>
+    <script>
+        window.onerror = function () {
+            console.log("an error occurred")
+        }
+    </script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAza9o3JpYT8RpYKrPlOtqmn80sHbKBPC8&sensor=false">
+    </script>
+    <script type="text/javascript">
+        var map = null;
+        var marker = null;
+
+        window.addEventListener("message", processMessage);
+
+        function processMessage(msg) {
+            console.log("message received");
+
+            //Verify data and origin (in this case the local context page)
+            if (!msg.data || msg.origin !== "ms-appx://" + document.location.host) {
+                return;
+            }
+
+            var call = JSON.parse(msg.data);
+
+            if (!call.functionName) {
+                throw "Message does not contain a valid function name.";
+            }
+
+            var target = this[call.functionName];
+
+            if (typeof target != 'function') {
+                throw "The function name does not resolve to an actual function";
+            }
+
+            return target.apply(this, call.args);
+        }
+
+        function notifyParent(event, args) {
+            //Add event name to the arguments object and stringify as the message
+            args["event"] = event;
+            window.parent.postMessage(JSON.stringify(args),
+                "ms-appx://" + document.location.host);
+        }
+
+
+        function addMarker(lat, lng) {
+
+            var myLatLng = new google.maps.LatLng(lat, lng);
+
+            if (!marker) {
+                marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    draggable: true,
+                    title: ""
+                });
+
+                google.maps.event.addListener(this.marker, 'dragend', function () {
+                    var latLng = marker.getPosition();
+                    notifyParent("markerDragged", { lat: latLng.lat(), lng: latLng.lng() });
+                });
+            } else {
+                marker.setPosition(myLatLng);
+            }
+
+            map.setCenter(myLatLng);
+            map.setZoom(18);
+        }
+
+        function initialize() {
+            var mapOptions = {
+                center: new google.maps.LatLng(-34.397, 150.644),
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map-canvas"),
+                mapOptions);
+            notifyParent("mapLoaded", {});
+        }
+
+
+        try {
+            google.maps.event.addDomListener(window, 'load', initialize);
+        }
+        catch (e) {
+            console.log(e.message);
+        }
+
+
+    </script>
+</head>
+<body onload="">
+    <div id="map-canvas" />
+</body>
+</html>
