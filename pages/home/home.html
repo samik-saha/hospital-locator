@@ -23,7 +23,7 @@
                 data-win-options="{
                 id:'changeLocationCmd', 
                 label:'Change Location', 
-                icon:'globe'}" type="button"></button>
+                icon:'world'}" type="button"></button>
         <button data-win-control="WinJS.UI.AppBarCommand"
                 data-win-options="{
             id: 'changeRadiusCmd',
@@ -59,7 +59,9 @@
             <progress id="progressRing" class="win-ring win-large"></progress>
             <h2 id="subheader" class="win-type-ellipsis"></h2>
             <h2 id="searchStatus"></h2>
-            <div id="listView" data-win-control="WinJS.UI.ListView" data-win-options="{layout:{type: WinJS.UI.GridLayout}}"></div>
+            <div id="listView" data-win-control="WinJS.UI.ListView"
+                 data-win-options="{layout:{type: WinJS.UI.GridLayout},
+                 selectionMode : 'none'}"></div>
 
             <img class="googlelogo" src="/images/powered-by-google-on-white.png" />
         </section>

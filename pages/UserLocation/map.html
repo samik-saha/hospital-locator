@@ -19,6 +19,7 @@
         }
     </style>
     <script>
+        
         window.onerror = function () {
             console.log("an error occurred")
         }
@@ -31,6 +32,7 @@
         var marker = null;
 
         window.addEventListener("message", processMessage);
+        
 
         function processMessage(msg) {
             console.log("message received");
@@ -91,10 +93,19 @@
             var mapOptions = {
                 center: new google.maps.LatLng(-34.397, 150.644),
                 zoom: 8,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true,
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.LARGE,
+                    position: google.maps.ControlPosition.RIGHT_TOP
+                },
             };
             map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapOptions);
+
+            google.maps.event.addDomListener(map, 'rightclick', sendRightClicktoApp);
+
             notifyParent("mapLoaded", {});
         }
 
@@ -106,10 +117,12 @@
             console.log(e.message);
         }
 
-
+        function sendRightClicktoApp() {
+            notifyParent("rightClicked", {});
+        }
     </script>
 </head>
 <body onload="">
-    <div id="map-canvas" />
+    <div id="map-canvas"/>
 </body>
 </html>

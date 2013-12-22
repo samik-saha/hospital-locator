@@ -72,6 +72,9 @@
             console.log("marker dragged");
             gReverseGeoCode(call.lat, call.lng);
         }
+        else if (call.event == "rightClicked") {
+            appBar.winControl.show();
+        }
     }
 
     //helper method to send message to frame
