@@ -14,6 +14,33 @@
     <script src="/pages/home/home.js"></script>
 </head>
 <body>
+    <div id="appBar" data-win-control="WinJS.UI.AppBar"
+         data-win-options="{
+        placement: 'bottom',
+        layout: 'commands'
+    }">
+        <button data-win-control="WinJS.UI.AppBarCommand" 
+                data-win-options="{
+                id:'changeLocationCmd', 
+                label:'Change Location', 
+                icon:'globe'}" type="button"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+            id: 'changeRadiusCmd',
+            icon: 'target',
+            label: 'Change Radius',
+            type: 'flyout',
+            flyout: select('#changeRadiusFlyout')}"></button>
+    </div>
+    <div id="changeRadiusFlyout"
+         data-win-control="WinJS.UI.Menu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption', id:'500',label:'500 m',type:'toggle', selected:'false'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'1000',label:'1 km',type:'toggle', selected:'false'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'2000',label:'2 km',type:'toggle', selected:'false'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'5000',label:'5 km',type:'toggle', selected:'true'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'10000',label:'10 km',type:'toggle', selected:'false'}"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'20000',label:'20 km',type:'toggle', selected:'false'}"></button>
+    </div>
     <!-- The content that will be loaded and displayed. -->
     <div class="fragment homepage">
         <header aria-label="Header content" role="banner">
@@ -32,18 +59,6 @@
             <progress id="progressRing" class="win-ring win-large"></progress>
             <h2 id="subheader" class="win-type-ellipsis"></h2>
             <h2 id="searchStatus"></h2>
-            <div class="toolbar">
-                <label class="text" for="distRange">Search radius: </label>
-                <select id="distRange">
-                    <option value="0.5">500 m</option>
-                    <option value="1" selected="selected">1 km</option>
-                    <option value="2">2 km</option>
-                    <option value="5">5 km</option>
-                    <option value="10">10 km</option>
-                    <option value="20">20 km</option>
-                </select>
-                <input class="item" id="chgLocBtn" type="button" onclick="WinJS.Navigation.navigate('/pages/UserLocation/UserLocation.html')" value="Change Location" />
-            </div>
             <div id="listView" data-win-control="WinJS.UI.ListView" data-win-options="{layout:{type: WinJS.UI.GridLayout}}"></div>
 
             <img class="googlelogo" src="/images/powered-by-google-on-white.png" />

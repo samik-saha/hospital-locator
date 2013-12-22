@@ -34,14 +34,33 @@
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
-            //nav.history = [];
+
+            /** Add event listeners for the search box **/
 
             var elem = document.querySelector("#searchBoxId");
             elem.addEventListener("querychanged", searchQueryChanged);
             elem.addEventListener("querysubmitted", searchHandler);
 
-            element.querySelector("#distRange").addEventListener("change", searchRadiusChanged);
+            /** Add event listeners for appbar commands **/
 
+            //Change Location Command
+            document.getElementById("changeLocationCmd").addEventListener(
+            "click",
+            function () {
+                console.log(WinJS.Navigation.location);
+                if (WinJS.Navigation.location != "/pages/UserLocation/UserLocation.html") {
+                    WinJS.Navigation.navigate("/pages/UserLocation/UserLocation.html")
+                }
+            },
+            false);
+
+            //Change Radius Command
+            var cmds = document.getElementsByClassName("radiusOption");
+            for (var i = 0; i < cmds.length; i++){
+                cmds[i].addEventListener("click", searchRadiusChanged);
+            }
+
+            /** Retrieve saved user address **/
 
             lat = localSettings.values["latitude"];
             lng = localSettings.values["longitude"];
@@ -49,16 +68,23 @@
             var homeLong = mySessionState.homeLong;
             
             userAddress = localSettings.values["userAddress"];
-            element.querySelector("#subheader").innerHTML = "Hospitals near \"" + userAddress+"\"";
             
+            /** Retrieve saved search radius **/
+
             var r = localSettings.values["searchRadius"]
 
             if (r) {
                 radius = r;
-                distRange.selectedIndex = dict[radius];
+                //Set the proper radius option selected
+                setSelectedRadius(radius);
             } else {
-                radius = distRange.options[distRange.selectedIndex].value;
+                //set default radius selected as 5 km.
+                radius = 5000;
             }
+
+            element.querySelector("#subheader").innerHTML = "Hospitals within " + radius / 1000 + " km of \"" + userAddress + "\"";
+
+            /** restore searchquery if any **/
 
             if (mySessionState.filterString) {
                 elem.winControl.queryText = mySessionState.filterString;
@@ -66,6 +92,9 @@
 
             listView.winControl.itemTemplate = MyJSItemTemplate;
             listView.winControl.oniteminvoked = itemClicked;
+
+            /** If location has not changed,
+            use sessionstate data to populate hospital list **/
 
             if (homeLat && homeLong) {
                 if (lat == homeLat && lng == homeLong) {
@@ -94,6 +123,18 @@
 
     });
     
+    /**
+    * Set the togglebutton with the radius 'Selected', unselect all other buttons
+    */
+    function setSelectedRadius(radius) {
+        var cmds = document.getElementsByClassName("radiusOption");
+
+        for (var i = 0; i < cmds.length; i++) {
+            cmds[i].winControl.selected = false;
+        }
+
+        document.getElementById(radius).winControl.selected = true;
+    }
 
     function filter (item) {
             if (item.title.toUpperCase().indexOf(filterString.toUpperCase()) >= 0) {
@@ -144,18 +185,23 @@
         
     }
 
-    function searchRadiusChanged() {
-        radius = distRange.options[distRange.selectedIndex].value;
+    function searchRadiusChanged(e) {
+        console.log(e.target);
+        radius = e.target.id;
+        setSelectedRadius(radius)
+        //radius = distRange.options[distRange.selectedIndex].value;
         localSettings.values["searchRadius"] = radius;
+        document.querySelector("#subheader").innerHTML = "Hospitals within " + radius / 1000 + " km of \"" + userAddress + "\"";
+        progressRing.style.visibility = "visible";
+        listView.winControl.itemDataSource = null;
         searchPlaces()
     }
 
     function searchPlaces() {
-        var radiusinmeter = radius * 1000;
         searchStatus.innerHTML = "";
         var searchURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
         var searchParams = "?location=" + lat + "," + lng +
-                "&radius=" + radiusinmeter +
+                "&radius=" + radius +
                 "&types=hospital" +
                 "&sensor=false" +
                 "&key=AIzaSyAza9o3JpYT8RpYKrPlOtqmn80sHbKBPC8";

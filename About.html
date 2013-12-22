@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>About</title>
+</head>
+<body>
+    <!-- BEGINTEMPLATE: Template code for an empty Help Flyout. -->
+    <!-- Each Settings flyout should be defined in its own HTML file. -->
+    <!-- Set the width to 'narrow' for a narrow Settings flyout. -->
+    <!-- Set the background color for the header to the background color defined for your
+         app tile in the manifest. -->
+    <div id="aboutDiv" data-win-control="WinJS.UI.SettingsFlyout" aria-label="About Settings flyout"
+         data-win-options="{settingsCommandId:'about'}">
+        <div class="win-header" style="background-color:#dbf9ff">
+            <button type="button" onclick="WinJS.UI.SettingsFlyout.show()" class="win-backbutton"></button>
+            <div class="win-label">About</div>
+        </div>
+        <div class="win-content">
+            About
+        </div>
+    </div>
+    <!-- ENDTEMPLATE -->
+</body>
+</html>

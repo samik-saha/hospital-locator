@@ -20,12 +20,16 @@
     width: 100%;
     display: -ms-grid;
     -ms-grid-columns: 1fr;
-    -ms-grid-rows: 40px 30px 1fr;
+    -ms-grid-rows: 40px 1fr;
     
 }
 
 h1.titlearea {
     width: calc(100% - 320px);
+}
+
+.win-appbar {
+    background-color:darkorange;
 }
 
 #searchBoxId {
@@ -41,16 +45,6 @@ h1.titlearea {
     white-space:nowrap;
     width: calc(100% - 124px);
 }
-.toolbar {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    margin-top: 0px;
-    margin-left: 124px;
-}
-
-.toolbar .item {
-    margin-left: 20px;
-}
 
 #searchStatus {
     margin-top: 60px;
@@ -60,7 +54,7 @@ h1.titlearea {
 }
 
 #listView {
-    -ms-grid-row: 3;
+    -ms-grid-row: 2;
     -ms-grid-column: 1;
     margin-top: 20px;
     height: calc(100% - 20px);
@@ -69,6 +63,7 @@ h1.titlearea {
 
     #listView .win-surface {
         margin-left: 120px;
+        
     }
 
 .text {

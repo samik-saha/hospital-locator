@@ -59,7 +59,9 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="About.html" />
     <Content Include="css\default.css" />
+    <Content Include="HelpUI.html" />
     <Content Include="images\background-home.png" />
     <Content Include="images\background.png" />
     <Content Include="images\BadgeLogo.scale-100.png" />
@@ -91,6 +93,7 @@
     <Content Include="pages\UserLocation\UserLocation.css" />
     <Content Include="pages\UserLocation\UserLocation.html" />
     <Content Include="pages\UserLocation\UserLocation.js" />
+    <Content Include="PrivacyStatement.html" />
     <None Include="OneClickHospital_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

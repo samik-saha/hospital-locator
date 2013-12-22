@@ -14,7 +14,11 @@
     var sched = WinJS.Utilities.Scheduler;
     var ui = WinJS.UI;
 
+    var sampleTitle = "Application Settings";
 
+    var scenarios = [
+        { url: "/HelpUI.html", title: "Add Help Settings flyout linked to the settings charm" },
+    ];
 
 
     app.addEventListener("activated", function (args) {
@@ -32,6 +36,7 @@
 
             // Optimize the load of the application and while the splash screen is shown, execute high priority scheduled work.
             ui.disableAnimations();
+
             var p = ui.processAll().then(function () {
                 if (localSettings.values["userAddress"]) {
                     return nav.navigate("/pages/home/home.html", nav.state);
@@ -43,33 +48,23 @@
                 return sched.requestDrain(sched.Priority.aboveNormal + 1);
             }).then(function () {
                 ui.enableAnimations();
-            }).then(function () {
-
-                //document.getElementById("cmd").addEventListener(
-                //"click",
-                //function () {
-                //    console.log(WinJS.Navigation.location);
-                //    if (WinJS.Navigation.location != "/pages/UserLocation/UserLocation.html") {
-                //        WinJS.Navigation.navigate("/pages/UserLocation/UserLocation.html")
-                //    }
-                //},
-                //false);
             });
 
             args.setPromise(p);
 
 
-            WinJS.Application.onerror = function () {
-                console.log("an error occurred");
-                WinJS.Navigation.navigate("/pages/home/home.html");
-                return true;
-            }
 
-            window.onerror = function () {
-                console.log("an error occurred");
-                WinJS.Navigation.navigate("/pages/home/home.html");
-                return true;
-            }
+            //WinJS.Application.onerror = function () {
+            //    console.log("an error occurred");
+            //    WinJS.Navigation.navigate("/pages/home/home.html");
+            //    return true;
+            //}
+
+            //window.onerror = function () {
+            //    console.log("an error occurred");
+            //    WinJS.Navigation.navigate("/pages/home/home.html");
+            //    return true;
+            //}
 
 
             notifications.TileUpdateManager.createTileUpdaterForApplication().enableNotificationQueue(true);
@@ -107,6 +102,30 @@
         // suspended, call args.setPromise().
         app.sessionState.history = nav.history;
     };
+
+    WinJS.Namespace.define("SdkSample", {
+        sampleTitle: sampleTitle,
+        scenarios: scenarios
+    });
+
+    WinJS.Application.onsettings = function (e) {
+        e.detail.applicationcommands = {
+            "help": {
+                title: "Help",
+                href: "HelpUI.html"
+            },
+            "about": {
+                title: "About",
+                href: "About.html"
+            },
+            "privacy": {
+                title: "Privacy Statement",
+                href: "PrivacyStatement.html"
+            }
+        };
+        WinJS.UI.SettingsFlyout.populateSettings(e);
+    };
+
 
     app.start();
 })();
