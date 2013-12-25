@@ -1,6 +1,6 @@
 ﻿.fragment {
     -ms-grid-columns: 1fr;
-    -ms-grid-rows: 128px 1fr;
+    -ms-grid-rows: 120px 1fr;
     display: -ms-grid;
     height: 100%;
     width: 100%;
@@ -12,7 +12,23 @@
         -ms-grid-rows: 1fr;
         display: -ms-grid;
     }
+        .fragment header[role=banner] .win-navigation-backbutton {
+            -ms-grid-column: 2;
+            margin-top: 57px;
+            position: relative;
+            z-index: 1;
+        }
 
+        .fragment header[role=banner] .titlearea {
+            -ms-grid-column: 3;
+            margin-top: 37px;
+        }
+
+            .fragment header[role=banner] .titlearea .pagetitle {
+                width: calc(100% - 20px);
+                color: orangered;
+                text-shadow:none;
+            }
 
 .homepage section[role=main] {
     -ms-grid-column-span: 2;
@@ -42,8 +58,12 @@ h1.titlearea {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     margin-left: 124px;
+    display:block;
     white-space:nowrap;
     width: calc(100% - 124px);
+    color:#023550;
+    height:40px;
+    margin-top:20px;
 }
 
 #searchStatus {
@@ -77,23 +97,23 @@ label.text {
 
 /* ListView Items */
 .item-container {
-    height: 250px;
-    width: 250px;
+    height: 260px;
+    width: 260px;
     overflow: hidden;
-    padding: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;*/
 }
 
     .item-container .image-container {
-        width: 250px;
-        height: 150px;
+        width: 260px;
+        height: 160px;
         overflow: hidden;
         text-align: center;
     }
 
         .item-container .image-container .item-image {
-            width: 250px;
+            width: 260px;
             height: auto;
-            min-height: 150px;
+            min-height: 160px;
         }
 
     .item-container .item-text-container {

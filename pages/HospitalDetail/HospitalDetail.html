@@ -32,15 +32,18 @@
                     <div class="hd-details">
                         <h2>Details</h2>
                         <br />
-                        <label for="phNo">Ph: </label><span id="phNo" class="details-item">(Not available)</span>
-                        <br />
-                        <label for="website">Website: </label><a id="website" href="#" class="details-item">(Not available)</a>
-                        <br />
-                        <label for="address">Address: </label><span id="address" class="details-item"></span>
-                        <br />
-                        <label for="ratingControlDiv">Rating: </label>
+                        <span id="ratingText">Not Rated</span><span>average rating</span>
+                        <hr />
                         <div id="ratingControlDiv" data-win-control="WinJS.UI.Rating" data-win-options="{disabled :true}"></div>
-
+                        <br /><br />
+                        <img id="callIcon" src="/images/phone.png" /><span id="phNo" class="details-item">(Not available)</span>
+                        <br /><br />
+                        <img id="webIcon" src="/images/web.png" /><a id="website" href="#" class="details-item">(Not available)</a>
+                        <br /><br />
+                        <span id="addrLabel">Address</span>
+                        <hr />
+                        <span id="address" class="details-item"></span>
+                        <br />
                     </div>
                 </section>
 

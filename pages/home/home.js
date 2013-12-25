@@ -287,8 +287,11 @@
 
             function error(r){
                 progressRing.style.visibility = "hidden";
-                document.querySelector("#searchStatus").style.visibility = "visible";
-                document.querySelector("#searchStatus").innerText = "An error occurred. Please retry.";
+
+                var msg = new Windows.UI.Popups.MessageDialog(
+                "An error occurred while retrieving hospital list. Please try later.");
+
+                msg.showAsync();
             }
 
             );

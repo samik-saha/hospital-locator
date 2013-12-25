@@ -66,6 +66,7 @@
     <Content Include="images\background.png" />
     <Content Include="images\BadgeLogo.scale-100.png" />
     <Content Include="images\hospital-gray.scale-100.png" />
+    <Content Include="images\phone.png" />
     <Content Include="images\powered-by-google-on-white.png" />
     <Content Include="images\splashscreen.scale-100.png" />
     <Content Include="images\storelogo.scale-100.png" />
@@ -74,6 +75,7 @@
     <Content Include="images\hospital-image.png" />
     <Content Include="images\hospital-icon.png" />
     <Content Include="images\powered-by-google-on-non-white.png" />
+    <Content Include="images\web.png" />
     <Content Include="images\Wide310x150Logo.scale-100.png" />
     <Content Include="images\wideDefaultTile.png" />
     <Content Include="js\default.js" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:build="http://schemas.microsoft.com/developer/appx/2012/build" IgnorableNamespaces="build">
-  <Identity Name="c9b1353e-5ec2-494a-a246-b4fb9be6ae32" Version="1.0.0.7" Publisher="CN=Samik" />
+  <Identity Name="c9b1353e-5ec2-494a-a246-b4fb9be6ae32" Version="2.1.1.1" Publisher="CN=Samik" />
   <Properties>
     <DisplayName>HospitalLocator</DisplayName>
     <PublisherDisplayName>Samik</PublisherDisplayName>

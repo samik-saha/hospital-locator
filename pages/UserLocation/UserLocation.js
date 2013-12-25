@@ -16,6 +16,12 @@
         // populates the page elements with the app's data.
         ready: function (element, options) {
             // TODO: Initialize the page here.
+            var elem = document.querySelector("#locSearchBox");
+            elem.addEventListener("querysubmitted", performSearch);
+
+            document.getElementById("myLocationCmd").addEventListener("click", requestPosition);
+            document.getElementById("findHospitalsCmd").addEventListener("click", function () { WinJS.Navigation.navigate('/pages/home/home.html') });
+
             if (!localSettings.values["userAddress"]) {
                 document.getElementById("continueButton").disabled = true;
                 requestPosition();
@@ -31,16 +37,6 @@
             }
 
             addEventListener("message", processMessage);
-            element.querySelector("#detectLocationButton").addEventListener("click", requestPosition);
-            element.querySelector("#showSearchButton").addEventListener("click", showSearchBox);
-            element.querySelector("#cancelSearchButton").addEventListener("click", cancelSearch);
-            element.querySelector("#searchButton").addEventListener("click", performSearch);
-            element.querySelector("#searchInput").addEventListener("keyup", function (event) {
-                var key = event.keyCode || event.which;
-                if (key == 13) {
-                    performSearch();
-                }
-            });
         },
 
         unload: function () {
@@ -99,28 +95,36 @@
             function onComplete(result) {
                 var obj = eval("(" + result.responseText + ")");
 
-                //get latitude and longitude
-                var lat = obj.results[0].geometry.location.lat;
-                var lng = obj.results[0].geometry.location.lng;
+                if (obj.status == "OK") {
+                    //get latitude and longitude
+                    var lat = obj.results[0].geometry.location.lat;
+                    var lng = obj.results[0].geometry.location.lng;
 
-                //display formatted address
-                document.getElementById("status").innerHTML = obj.results[0].formatted_address;
-                document.querySelector("#searchResult").innerText = obj.results[0].formatted_address;
+                    //display formatted address
+                    document.getElementById("status").innerHTML = obj.results[0].formatted_address;
 
-                //show marker on map
-                callFrameScript(document.frames["usrLocMap"], "addMarker", [lat, lng]);
-               
-                //Save address and lat, lng
-                localSettings.values["userAddress"] = obj.results[0].formatted_address;
-                localSettings.values["latitude"] = lat;
-                localSettings.values["longitude"] = lng;
+                    //show marker on map
+                    callFrameScript(document.frames["usrLocMap"], "addMarker", [lat, lng]);
 
-                //enable continue button
-                continueButton.disabled = false;
+                    //Save address and lat, lng
+                    localSettings.values["userAddress"] = obj.results[0].formatted_address;
+                    localSettings.values["latitude"] = lat;
+                    localSettings.values["longitude"] = lng;
+
+                    //enable continue button
+                    continueButton.disabled = false;
+                }
+                else {
+                    var msg = new Windows.UI.Popups.MessageDialog(
+                        "No results found for \"" + address + "\"");
+                    msg.showAsync();
+                }
             },
 
             function onError(result) {
-                document.getElementById("status").innerHTML = "An error occurred."
+                var msg = new Windows.UI.Popups.MessageDialog(
+                        "An error occurred during search. Please try again.");
+                msg.showAsync();
             }
         );
     }
@@ -208,8 +212,8 @@
 
     }
 
-    function performSearch() {
-        var query = document.querySelector("#searchInput").value;
+    function performSearch(args) {
+        var query = args.detail.queryText;
         gGeoCode(query);
     }
 

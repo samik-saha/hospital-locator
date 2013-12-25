@@ -1,7 +1,7 @@
 ﻿#contenthost {
     height: 100%;
     width: 100%;
-    background-image: url("/images/background.png");
+    /*background-image: url("/images/background.png");*/
     background-repeat:no-repeat;
     background-size:contain;
 }
@@ -9,7 +9,7 @@
 .fragment {
     /* Define a grid with rows for a banner and a body */
     -ms-grid-columns: 1fr;
-    -ms-grid-rows: 128px 1fr;
+    -ms-grid-rows: 120px 1fr;
     display: -ms-grid;
     height: 100%;
     width: 100%;
@@ -36,6 +36,7 @@
 
             .fragment header[role=banner] .titlearea .pagetitle {
                 width: calc(100% - 20px);
+                color: orangered;
             }
 
     .fragment section[role=main] {

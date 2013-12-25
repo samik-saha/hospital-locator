@@ -107,8 +107,12 @@
                             address.innerHTML = resultObj.result.formatted_address;
                         }
 
-                        var ratingControl = ratingControlDiv.winControl
-                        ratingControl.userRating = resultObj.result.rating;
+                        if (resultObj.result.rating) {
+                            var ratingControl = ratingControlDiv.winControl
+                            ratingControl.averageRating = resultObj.result.rating;
+                            ratingText.innerText = resultObj.result.rating;
+                        }
+                        
 
 
 

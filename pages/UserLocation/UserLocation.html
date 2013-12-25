@@ -25,15 +25,11 @@
                 id:'myLocationCmd',
                 label:'My Location',
                 icon:'mappin'}" type="button"></button>
-    </div>
-    <div id="changeRadiusFlyout"
-         data-win-control="WinJS.UI.Menu">
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption', id:'500',label:'500 m',type:'toggle', selected:'false'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'1000',label:'1 km',type:'toggle', selected:'false'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'2000',label:'2 km',type:'toggle', selected:'false'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'5000',label:'5 km',type:'toggle', selected:'true'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'10000',label:'10 km',type:'toggle', selected:'false'}"></button>
-        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{extraClass: 'radiusOption',id:'20000',label:'20 km',type:'toggle', selected:'false'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'findHospitalsCmd',
+                label:'Find Hospitals',
+                icon:'find'}" type="button"></button>
     </div>
 
     <div class="locationPage fragment">
@@ -44,33 +40,18 @@
             </h1>
         </header>
         <div class="content">
-            <section id="mainSection" class="details" style="visibility:hidden">
-                <br>
-
-                <div id="btnGroup1">
-                    <br>
-                    <h2 id="status">Detecting your location. Please wait.</h2>
-                    <br>
-                    <input id="detectLocationButton" type="button" value="Detect Location" />
-                    <input id="showSearchButton" type="button" value="Enter Location" />
-                </div>
-                <div id="searchBox" hidden="hidden">
-
-                    <input id="searchInput" type="search"  />
-                    <input id="searchButton" type="button" value="Search" />
-                    <input id="cancelSearchButton" type="button" value="Cancel" />
-                    <br /><br />
-                    <h2 id="searchResult"></h2>
-                </div>
-                <br>
-                <br>
-            </section>
+            <h2 id="status">Detecting your location. Please wait.</h2>
+            <div id="locSearchBox"
+                 data-win-control="WinJS.UI.SearchBox"
+                 data-win-options="{focusOnKeyboardInput: true,
+                 placeholderText:'Search Location'}">
+            </div>
 
             <iframe id="usrLocMap" src="ms-appx-web:///pages/UserLocation/map.html"></iframe>
 
-            <section class="footer-btn">
-                <input id="continueButton" type="button" onclick="WinJS.Navigation.navigate('/pages/home/home.html')" value="Continue" />
-            </section>
+
+            <input id="continueButton" type="button" onclick="WinJS.Navigation.navigate('/pages/home/home.html')" value="Continue" />
+
         </div>
     </div>
 </body>

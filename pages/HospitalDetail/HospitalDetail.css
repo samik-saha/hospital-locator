@@ -84,6 +84,10 @@ header {
         }
 
 
+h2 {
+    color: #023550;
+}
+
 section.hd-details {
     /*background-color:#424242;*/
     -ms-grid-column: 2;
@@ -317,14 +321,18 @@ label {
 }
 
 .review-item {
-    background-color: lightgray;
+    background-color: lightblue;
     padding: 10px 10px 10px 10px;
     color: black;
     margin-bottom: 10px;
-    border: 0.5px solid gray;
+    border: 0.5px solid lightblue;
 }
 
-.win-rating .win-full.win-user.win-star, .win-rating .win-disabled.win-full.win-user.win-star {
+.win-rating .win-full.win-average.win-star, .win-rating .win-disabled.win-full.win-average.win-star {
+    color: orange;
+}
+
+.win-rating .win-full.win-user.win-star , .win-rating .win-disabled.win-full.win-user.win-star,.win-rating .win-average .win-star {
     color: orange;
 }
 
@@ -342,3 +350,25 @@ progress:indeterminate {
     color: orange;
     height: 7px;
 }
+
+#ratingText {
+    font-size:64px;
+    color:darkblue;
+}
+
+#callIcon,#webIcon {
+    height: 24px;
+    width: 24px;
+    display:inline;
+    vertical-align:text-bottom;
+}
+
+#addrLabel {
+    font-size: 32px;
+    color:darkblue;
+}
+#phNo,#website,#address {
+    font-size: 24px;
+}
+
+
