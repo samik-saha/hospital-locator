@@ -211,11 +211,13 @@
                     return item.isOnScreen();
                 });
             }).then(function (onscreen) {
+                try {
                 var img = element.querySelector("img");
                 element.style.backgroundColor = "white";
                 
-                var progressRing = element.querySelector("progress");
-                progressRing.style.visibility = "hidden";
+                    var progressRing = element.querySelector("progress");
+                    progressRing.style.visibility = "hidden";
+                
                 if (!onscreen) {
                     // if the item is not visible, don't animate its opacity
                     img.style.opacity = 1;
@@ -224,6 +226,7 @@
                     WinJS.UI.Animation.fadeIn(img);
                 }
                 img.style.visibility = "visible";
+                } catch (e) { }
             })
         };
     });
